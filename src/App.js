@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import Expenses from './Components/Expenses/Expenses';
 import NewExpense from './Components/NewExpense/NewExpense';
-const App = () => {
-  const expenses = [
+
+const DUMMY_EXPENSES = [
     {
       id: 'e1',
       title: 'Toilet Paper',
@@ -24,9 +24,13 @@ const App = () => {
       date: new Date(2021, 5, 12),
     },
   ];
+const App = () => {
+  const [expenses, setExpenses] = useState(DUMMY_EXPENSES);
 
   const expenseAdd = (expense) => {
-    console.log(expense);
+    setExpenses(prevExpenses => {
+     return [expense, ...prevExpenses]
+    });
   }
 
   // return React.createElement(
